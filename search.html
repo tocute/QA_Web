@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <title>Search Threal</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="js/search.js"></script>
 </head>
 
 <body>
@@ -26,6 +29,15 @@
     </ul>
   </nav>
 
-  SEARCH!!
+  <br>
+  <button id="btn_query_popular" type="button" class="btn btn-default">查詢</button>
+  <br>
+  <div class="table-responsive">
+    <table class="table table-hover table-striped" >
+      <tbody id="table_query_result">
+
+      </tbody>
+    </table>
+  </div>
 </body>
 </html>
