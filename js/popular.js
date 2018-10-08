@@ -1,23 +1,31 @@
 //http://tarruda.github.io/bootstrap-datetimepicker/
 
-var onBtnQueryHome = function (e){      
+var onBtnQueryPopular = function (e){      
   $.ajax({
     type: "GET",
-    url: "https://staging.threal3d.com/api/v3/guest/stories/feed?page=1&per_page=25&story_type=image",
+    url: "https://staging.threal3d.com/api/v3/search/tags/popular?number_of_stories=6",
     //contentType: 'application/json; charset=UTF-8', 
     success: function(data, status, jqXHR) {
         var str = "";
-        for (var i = 0; i < data.length; i++) {
+        for (var z = 0; z < 4; z++){
+          str += "<br>";
+          str += data[z]["tag"];
+          str += "<br>";
+          for (var i = 0; i < data[z]["stories"].length; i++) {
           if(i % 5 == 0)
             str += "<tr>";
 
           str += "<td>";
-          str += "<img src=\""+ data[i]["color"]["fit_160"] +"\" onmouseover=\"src='"+data[i]["depth"]["original"]+"'\" onmouseout=\"src='"+data[i]["color"]["fit_160"]+"'\" width = 150 height = 150>"
+          str += "<img src=\""+ data[z]["stories"][i]["color"]["fit_160"] +"\" width = 150 height = 150>"
+          //str += "<img src=\""+ data[i]["depth"]["original"] +"\">"
           str += "</td>";
           
           if(i % 5 == 4 || i == data.length -1)
             str += "</tr>";
+          }
+
         }
+        
 
         $("#table_query_result").append(str);
         console.log(data[i]);
@@ -30,5 +38,5 @@ var onBtnQueryHome = function (e){
 }
 
 $(document).ready(function(){ 
-    $("#btn_query_story").on("click", onBtnQueryHome);
+    $("#btn_query_popular").on("click", onBtnQueryPopular);
 });
