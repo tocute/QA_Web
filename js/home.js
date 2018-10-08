@@ -5,6 +5,7 @@ var page = 1 ;
 var onBtnQueryHome = function (e)
 {      
   console.log("load page:" + page) ;
+
   $.ajax
   (
     {
@@ -15,14 +16,15 @@ var onBtnQueryHome = function (e)
       success: function(data, status, jqXHR) 
       {
 
-        page = page + 1 ;
+        page = page + 1 ;  //成功的話，每按一次查訊就會再download下一頁資訊
+
         var str = "";
         for (var i = 0; i < data.length; i++) 
         {
           if(i % 5 == 0)  //秀五張然後換行
             str += "<tr>";
 
-          str += "<td><img src=\" "+ data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' "+data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" width=150; ></td>";
+          str += "<td><img src=\" "+ data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' "+data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" width=150; height=150;></td>";
           
           if(i % 5 == 4 || i == data.length -1)
             str += "</tr>"; 

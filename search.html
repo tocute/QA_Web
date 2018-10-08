@@ -1,35 +1,42 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title>Search Threal</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="js/search.js"></script>
+
+
 </head>
 
 <body>
   <nav class="navbar navbar-inverse">
     <div class="navbar-header">
-      <a class="navbar-brand">Query Page</a>
+      <a class="navbar-brand"> THEIA </a>
     </div>
 
     <ul class="nav navbar-nav">
       <li>
-        <a class="navbar-brand" href="home.html">Home</a>   
+        <a class="navbar-brand" href="home.html"> Home </a>   
       </li>
 
       <li class="active">
-        <a class="navbar-brand" href="search.html">Search</a>
+        <a class="navbar-brand" href="search_popular.html"> Search </a>
       </li> 
 
       <li>
-        <a class="navbar-brand" href="story_info.html">Story</a>
+        <a class="navbar-brand" href="story_info.html"> Story </a>
       </li>   
     </ul>
 
   </nav>
 
+  <br>
+  
   <form>
     &emsp;&emsp;
 
@@ -43,11 +50,24 @@
 
     &emsp;&emsp;&emsp;&emsp;
 
-     
-    <input type="search" id="mysearch" name="q" placeholder="Search the site..." size="30">
-    <button>Search</button>
-    
-    </form>
+    <input type="search" id="btn_query_popular" name="all" placeholder="Search the site..." size="30">
+    <button id="mysearch"> Search </button>
+
+  </form>
+
+    <br>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped" >
+      <tbody id="table_query_result">
+
+      </tbody>
+    </table>
+  </div>
+
+  &emsp;&emsp;
+
+
 
 
 </body>
