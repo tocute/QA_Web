@@ -7,7 +7,7 @@ var onBtnQueryPopular = function (e){
     //contentType: 'application/json; charset=UTF-8', 
     success: function(data, status, jqXHR) {
         var str = "";
-        for (var z = 0; z < 4; z++){
+        for (var z = 0; z < 5; z++){
           str += "<br>";
           str += data[z]["tag"];
           str += "<br>";
@@ -16,8 +16,11 @@ var onBtnQueryPopular = function (e){
             str += "<tr>";
 
           str += "<td>";
-          str += "<img src=\""+ data[z]["stories"][i]["color"]["fit_160"] +"\" width = 150 height = 150>"
-          //str += "<img src=\""+ data[i]["depth"]["original"] +"\">"
+          //  
+          str += "<a href=\""+data[z]["stories"][i]["color"]["fit_1280"]+" \">";
+          str += "<img src=\""+ data[z]["stories"][i]["color"]["fit_160"] +"\" width = 150 >"
+          str += "</a>";
+         //str += "<img src=\""+ data[i]["depth"]["original"] +"\">"
           str += "</td>";
           
           if(i % 5 == 4 || i == data.length -1)
