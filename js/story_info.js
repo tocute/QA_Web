@@ -2,48 +2,30 @@
 
 var page = 1 ;
 
-var onBtnQueryInfo = function (e)
+var queryInfo = function (story_id)
 {      
-  console.log("load page:" + page) ;
 
   $.ajax
   (
     {
       type: "GET",  //拿取下面網頁資料
-      url: "https://staging.threal3d.com/api/v3/guest/stories/feed?page=" + page + "&per_page=25&story_type=image",
+      url: "https://staging.threal3d.com/api/v3/guest/stories/" + story_id ,
       //contentType: 'application/json; charset=UTF-8', 
 
       success: function(data, status, jqXHR) 
       {
-
-        page = page + 1 ;  //成功的話，每按一次查訊就會再download下一頁資訊
-
         var str = "";
-        for (var i = 0; i < data.length; i++) 
-        {
-          if(i % 5 == 0)  //秀五張然後換行
-            str += "<tr>";
-// 圖片
-          str += "<td><img src=\" "+ data[i]["color"]["fit_160"] + " \"  width=150; height=150;></td>";
-          str += "<td><img src=\" "+ data[i]["depth"]["original"] + " \"  width=150; height=150;></td>";
+        str += "<img src=\" "+ data["color"]["fit_160"] + " \"  width=150; height=150;>";
+        str += "<img src=\" "+ data["depth"]["original"] + " \"  width=150; height=150;>";
 
-// userdata
-          str += "<td><img src=\" "+ data[i]["user"]["image"] + " \"  width=50; height=50;></td>";
-         str += "<td>"+"Name: "+ data[i]["user"]["name"]+"</td>"+"<td>" + data[i]["updated_at"] +"</td>" ;
-          str += "<td>"+"Description: "+ data[i]["description"]+"</td>"+"<td>"+"Tags: " + data[i]["tags"] +"</tr>" ;
-      
-          
-          if(i % 5 == 4 || i == data.length -1)
-            str += "</tr>"; 
-        }
-
-        $("#table_query_result").append(str);
+        $("#query_result").append(str);
         console.log(data);
         //alert(data);
       },
       error: function(jqXHR, textStatus, errorThrown)
       { 
-          console.log(errorThrown) ; alert('Failed!'); 
+          console.log(errorThrown) ; 
+          alert('Failed!'); 
       }
     }
   );
@@ -51,8 +33,23 @@ var onBtnQueryInfo = function (e)
 
 $(document).ready
 (
-  function()
+    function()
     { 
-      $("#btn_query_story").on("click", onBtnQueryInfo);
+      var getPara, ParaVal;
+      var aryPara = [];
+      var strUrl = location.search;
+      var story_id = "";
+      if (strUrl.indexOf("?") != -1) {
+        var getSearch = strUrl.split("?");
+        getPara = getSearch[1].split("&");
+        for (i = 0; i < getPara.length; i++) {
+          ParaVal = getPara[i].split("=");
+          if(ParaVal[0] == "story_id")
+          {
+            story_id = ParaVal[1];
+          }          
+        }
+        queryInfo(story_id);
+      }
     }
 );

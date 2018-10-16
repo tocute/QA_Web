@@ -19,14 +19,19 @@ var onBtnQueryHome = function (e)
         page = page + 1 ;  //成功的話，每按一次查訊就會再download下一頁資訊
 
         var str = "";
+        var jump_url = "story_info.html?story_id=";
+        
         for (var i = 0; i < data.length; i++) 
         {
           if(i % 5 == 0)  //秀五張然後換行
             str += "<tr>";
-str += "<td>"+"Name: "+ data[i]["user"]["name"]+"<br>" + data[i]["updated_at"] +"<br>" ;
+
+          var jump_url_with_id = "story_info.html?story_id="+data[i]["id"];
+          
+          str += "<td>"+"Name: "+ data[i]["user"]["name"]+"<br>" + data[i]["updated_at"] +"<br>" ;
           str += "Description :"+ data[i]["description"]+"<br>"+"Tag :" + data[i]["tags"] +"<br>" ;
           str += "<td>";          
-          str += "<a href=\""+data[i]["color"]["fit_1280"]+" \">";          
+          str += "<a href=\""+jump_url_with_id+" \">";          
           str += "<img src=\" "+ data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' "+data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" width=150; height=150;>";
           str += "</a>";
           str += "</td>";                    
