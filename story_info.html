@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Story Threal</title>
+    <title> Query Threal </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="js/story_info.js"></script>
+
 </head>
 
 <body>
   <nav class="navbar navbar-inverse">
     <div class="navbar-header">
-      <a class="navbar-brand">Query Page</a>
+      <a class="navbar-brand"> Query Page </a>
     </div>
+
     <ul class="nav navbar-nav">
-      <li>
-        <a class="navbar-brand" href="home.html">Home</a>   
+      <li >
+        <a class="navbar-brand" href="home.html"> Home </a>   
       </li>
+
       <li>
-        <a class="navbar-brand" href="search.html">Search</a>
+        <a class="navbar-brand" href="search.html"> Search </a>
       </li> 
+
       <li class="active">
-        <a class="navbar-brand" href="story_info.html">Story</a>
-      </li>   
+        <a class="navbar-brand" href="story_info.html"> Story </a>
+      </li> 
+
     </ul>
   </nav>
 
-  STORY INFO!!
+  <br>
+
+
+
+  <br>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-striped" >
+      <tbody id="table_query_result">
+
+      </tbody>
+    </table>
+  </div>
+
+<button id="btn_query_story" type="button" class="btn btn-default"> View more... </button>
+
 </body>
+
 </html>
