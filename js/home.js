@@ -26,15 +26,14 @@ var onBtnQueryHome = function (e)
           if(i % 5 == 0)  //秀五張然後換行
             str += "<tr>";
 
-          var jump_url_with_id = "story_info.html?story_id="+data[i]["id"];
+          var jump_url_with_id = "story_info.html?story_id=" + data[i]["id"];
           
-          str += "<td>"+"Name: "+ data[i]["user"]["name"]+"<br>" + data[i]["updated_at"] +"<br>" ;
-          str += "Description :"+ data[i]["description"]+"<br>"+"Tag :" + data[i]["tags"] +"<br>" ;
-          str += "<td>";          
-          str += "<a href=\""+jump_url_with_id+" \">";          
-          str += "<img src=\" "+ data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' "+data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" width=150; height=150;>";
+          str += "<td>";         
+          str += "<a href=\"" + jump_url_with_id + " \">";          
+          str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" max-width=150; height=150;>";
           str += "</a>";
-          str += "</td>";                    
+          str += "</td>";        
+
           if(i % 5 == 4 || i == data.length -1)
             str += "</tr>"; 
         }
@@ -45,7 +44,8 @@ var onBtnQueryHome = function (e)
       },
       error: function(jqXHR, textStatus, errorThrown)
       { 
-          console.log(errorThrown) ; alert('Failed!'); 
+          console.log(errorThrown) ; 
+          alert('Failed!'); 
       }
     }
   );
