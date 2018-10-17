@@ -1,6 +1,6 @@
 //http://tarruda.github.io/bootstrap-datetimepicker/
 
-var onBtnQueryPopular = function (e)
+var BtnQueryPopular = function (e)
 {      
   $.ajax
   (
@@ -57,11 +57,11 @@ var onBtnQueryPopular = function (e)
     }
   );
 }
-
-$(document).ready
+// 在文档加载后激活函数：
+$(document).ready 
 (
   function()
   { 
-    $("#btn_query_popular").on("click", onBtnQueryPopular);
+    $("#btn_query_popular").on("click", BtnQueryPopular);
   }
 );
