@@ -15,10 +15,24 @@ var queryInfo = function (story_id)
       success: function(data, status, jqXHR) 
       {
         var str = "";
+        //str += "<div>";
         str += "<img src=\" "+ data["color"]["fit_160"] + " \"   height=150;>";
+        str += "  ";
         str += "<img src=\" "+ data["depth"]["original"] + " \"   height=150;>";
-
         $("#query_result").append(str);
+
+        str = "";
+        str += "<img src=\" "+ data["user"]["image"] + " \"   height=80;>";
+        str = "";        
+        str +=  data["user"]["name"];
+        str += " / ";
+        str +=  data["updated_at"]; 
+        str += " / ";
+        str +=  data["user"]["email"]; 
+        str += "       ";
+        str +=  "description:"+ data["description"];
+        $("#query_result_info").text(str);
+
         console.log(data);
         //alert(data);
       },
