@@ -1,4 +1,4 @@
-//http://tarruda.github.io/bootstrap-datetimepicker/
+﻿//http://tarruda.github.io/bootstrap-datetimepicker/
 
 var page = 1 ;
 
@@ -16,21 +16,23 @@ var queryInfo = function (story_id)
       {
         var str = "";
         //str += "<div>";
-        str += "<img src=\" "+ data["color"]["fit_160"] + " \"   height=150;>";
+        str += "<img src=\" "+ data["color"]["fit_1280"] + " \"   height=300;>";
         str += "  ";
-        str += "<img src=\" "+ data["depth"]["original"] + " \"   height=150;>";
+        str += "<img src=\" "+ data["depth"]["original"] + " \"   height=300;>";
         $("#query_result").append(str);
 
         str = "";
         str += "<img src=\" "+ data["user"]["image"] + " \"   height=80;>";
         str = "";        
         str +=  data["user"]["name"];
-        str += " / ";
+        str += "  /  ";
         str +=  data["updated_at"]; 
-        str += " / ";
+        str += "  /  ";
         str +=  data["user"]["email"]; 
-        str += "       ";
+        str += "  /  ";
         str +=  "description:"+ data["description"];
+        str += "  /  ";        
+        str +=  "tags:"+ data["tags"];
         $("#query_result_info").text(str);
 
         console.log(data);
