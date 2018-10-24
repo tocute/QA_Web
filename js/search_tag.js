@@ -1,5 +1,5 @@
 
-var btn_query_search = function (e)
+var btn_query_popular = function (e)
 {      
   var x = document.getElementById("mysearch").value;
   console.log(x);
@@ -15,11 +15,30 @@ var btn_query_search = function (e)
       {
         var str = "";
 
+        for (var i = 0 ; i < data["story_tag"].length ; i++) 
+        {
+          if(i % 5 == 0)
+            str += "<tr>";
+
+          str += "<td>";
+
+           for (var j = 0 ; j < data["story_tag"][i]["stories"].length ; j++)
+          {
+          //  str += "<img src=\""+ data["story_tag"][i]["stories"][j]["color"]["fit_160"] +"\" width = 150 height = 150>"
+          }
+          str += "</td>";
+          
+          if(i % 5 == 4 || i == data.length -1)
+            str += "</tr>";
+        }
+
+
         for (var i = 0 ; i < data["story_description"].length ; i++) 
         {
           if(i % 5 == 0)
-            str += "<tr >";
-          str += "<td >";
+            str += "<tr>";
+
+          str += "<td>";
           str += "<img src=\""+ data["story_description"][i]["color"]["fit_160"] +"\" width = 150 height = 150>"
           //str += "<img src=\""+ data[i]["depth"]["original"] +"\">"
           str += "</td>";
@@ -27,6 +46,8 @@ var btn_query_search = function (e)
           if(i % 5 == 4 || i == data.length -1)
             str += "</tr>";
         }
+
+
 
         $("#table_query_result").append(str);
         console.log(data[i]);
@@ -41,11 +62,11 @@ var btn_query_search = function (e)
     }
   );
 }
-// 在文档加载后激活函数：
+
 $(document).ready
 (
   function()
   { 
-    $("#search_button").on("click", btn_query_search);
+    $("#search_button").on("click", btn_query_popular);
   }
 );
