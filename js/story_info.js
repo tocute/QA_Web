@@ -59,8 +59,15 @@ var queryInfo = function (story_id)
         str += "  /  ";
         str +=  "description:"+ data["description"];
         str += "  /  ";        
-        str +=  "tags:"+ data["tags"];
-        $("#query_result_info").text(str);
+        //str +=  "tags:"+ data["tags"];
+        // Variety for tag
+        var jump_url_with_id = "search_tag.html?keyword=" + data["tags"];        
+        // tag with hyperlink
+        str += "<a href=\"" + jump_url_with_id + " \">"; 
+        str += data["tags"];
+        str += "</a>";
+        //
+        $("#query_result_info").append(str);
 
         console.log(data);
         // if(data["user"]["email"] == 'service@theia.tw')
