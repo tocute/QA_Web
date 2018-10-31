@@ -51,16 +51,20 @@ var queryInfo = function (story_id)
         str = "";
         str += "<img src=\" "+ data["user"]["image"] + " \"   height=80;>";
         str = "";        
-        str +=  data["user"]["name"];
-        str += "  /  ";
-        str +=  data["updated_at"]; 
-        str += "  /  ";
-        str +=  data["user"]["email"]; 
-        str += "  /  ";
-        str +=  "description:"+ data["description"];
-        str += "  /  ";        
-        str +=  "tags:"+ data["tags"];
-        $("#query_result_info").text(str);
+        str +=  data["user"]["name"]+" / ";
+        str +=  data["updated_at"]+"/"; 
+        str +=  data["user"]["email"]+" / "; 
+        str +=  "description:"+ data["description"]+" / ";
+        // Variety for tag
+        var jump_url_with_id = "search_tag.html?keyword=" + data["tags"];        
+        // tag with hyperlink
+          str += "<a href=\"" + jump_url_with_id + " \">"; 
+
+          str += data["tags"];
+          str += '</a>'
+        // 
+        //str +=  "tags:"+data["tags"];
+        $("#query_result_info").append(str);
 
         console.log(data);
         // if(data["user"]["email"] == 'service@theia.tw')
