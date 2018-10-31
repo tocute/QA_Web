@@ -55,6 +55,7 @@ $(document).ready
 (
   function()
     { 
+      onBtnQueryHome();
       $("#btn_query_story").on("click", onBtnQueryHome);
     }
 );

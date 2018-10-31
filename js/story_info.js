@@ -2,9 +2,36 @@
 
 var page = 1 ;
 
+/*var deleteStory = function (story_id)
+{
+  $.ajax
+  (
+    {
+      type: "DELETE",  //拿取下面網頁資料
+      url: "https://staging.threal3d.com/api/v3/stories/" + story_id ,
+      headers: {
+        'X-User-Uid':'123456789-theia',
+        'X-User-Token':'123456789-theia'
+      }, //contentType: 'application/json; charset=UTF-8', 
+      success: function(data, status, jqXHR) 
+      {
+        console.log(data); 
+        //alert(data);
+  //        <div class="alert alert-success">
+  //   <strong>Success!</strong> This alert box could indicate a successful or positive action.
+  // </div>
+      },
+      error: function(jqXHR, textStatus, errorThrown)
+      { 
+          console.log(textStatus); 
+          alert('Failed!'); 
+      }
+    }
+  );
+}*/
+
 var queryInfo = function (story_id)
 {      
-
   $.ajax
   (
     {
@@ -36,6 +63,12 @@ var queryInfo = function (story_id)
         $("#query_result_info").text(str);
 
         console.log(data);
+        // if(data["user"]["email"] == 'service@theia.tw')
+        // {
+        //   var btn_str = '<button type="button" class="btn btn-danger" onclick="deleteStory(\''+story_id+'\')">'
+        //   btn_str += 'Danger</button>'
+        //   $("#query_result").append(btn_str);
+        // }
         //alert(data);
       },
       error: function(jqXHR, textStatus, errorThrown)

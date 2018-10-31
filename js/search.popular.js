@@ -1,6 +1,6 @@
 //http://tarruda.github.io/bootstrap-datetimepicker/
 
-var BtnQueryPopular = function (e)
+var onBtnQueryPopular = function (e)
 {      
   $.ajax
   (
@@ -12,40 +12,30 @@ var BtnQueryPopular = function (e)
       success: function(data, status, jqXHR) 
       {
         var str = "";
+        console.log(data.length);
 
-        for (var z = 0 ; z < 4 ; z++)
+        for (var z = 0 ; z < data.length ; z++)
         {
-
-          str += "<br>";
-          str += "&emsp;";
-          
-
+          console.log(data[z]);
+          var jump_url_with_id = "search_tag.html?keyword=" + data[z]["tag"];
+          str += '<div class="panel panel-info">';
+          str += '<div class="panel-heading">';
+          str += "<a href=\"" + jump_url_with_id + " \">"; 
           str += data[z]["tag"];
-          str += "<br>";
-
-          str += "&emsp;";
-
+          str += '</a>'
+          str += '</div>';
+          str += '<div class="panel-body">';
           for (var i = 0; i < data[z]["stories"].length; i++) 
           {
-            if(i % 5 == 0)
-            str += "<tr>";
-
-            str += "<td>";
             str += "<img src=\""+ data[z]["stories"][i]["color"]["fit_160"] +"\" width = 150 height = 150>"
-            //str += "<img src=\""+ data[i]["depth"]["original"] +"\">"
-            str += "&emsp;";
-            
-            str += "</td>";
-          
-            if(i % 5 == 4 || i == data.length -1)
-              str += "</tr>";
           }
-
+          str += '</div>';
+          str += '</div>';
         }
         
 
-        $("#table_query_result").append(str);
-        console.log(data[i]);
+        $("#panel_query_result").append(str);
+        
         //alert(data);
       },
 
@@ -62,6 +52,7 @@ $(document).ready
 (
   function()
   { 
-    $("#btn_query_popular").on("click", BtnQueryPopular);
+    onBtnQueryPopular();
+    //$("#btn_query_popular").on("click", BtnQueryPopular);
   }
 );

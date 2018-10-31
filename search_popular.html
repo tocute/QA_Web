@@ -9,11 +9,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script src="js/search.popular.js"></script>
-
-
 </head>
 
-<body onload="onBtnQueryPopular()">
+<body>
   <nav class="navbar navbar-inverse">
     <div class="navbar-header">
       <a class="navbar-brand"> THEIA </a>
@@ -34,45 +32,17 @@
       </li> 
 
       <li>
-        <a class="navbar-brand" href=""> Search tag </a>
+        <a class="navbar-brand" href="search_tag.html"> Search tag </a>
       </li> 
 
     </ul>
 
   </nav>
 
-  <br>
-  
-  <form>
-    &emsp;&emsp;
 
-    <label class="radio-inline">
-      <input type="radio" name="optradio" checked> Photo
-    </label>
-
-    <label class="radio-inline">
-      <input type="radio" name="optradio"> Video
-    </label>
-
-    &emsp;&emsp;&emsp;&emsp;
-
-    <input type="search" id="mysearch" name="all" placeholder="Search the site..." size="30">
-    <button> Search </button>
-
-  </form>
-
-    <br>
-
-  <div class="table-responsive">
-    <table class="table table-hover table-striped" >
-      <tbody id="table_query_result">
-
-      </tbody>
-    </table>
+  <div class="container" id="panel_query_result">
+    
   </div>
-
-  &emsp;&emsp;
-
 
 
 </body>
