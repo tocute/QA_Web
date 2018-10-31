@@ -51,6 +51,7 @@ var queryInfo = function (story_id)
         str = "";
         str += "<img src=\" "+ data["user"]["image"] + " \"   height=80;>";
         str = "";        
+
         str +=  data["user"]["name"]+" / ";
         str +=  data["updated_at"]+"/"; 
         str +=  data["user"]["email"]+" / "; 
