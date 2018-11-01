@@ -1,16 +1,22 @@
 //http://tarruda.github.io/bootstrap-datetimepicker/
 
 var page = 1 ;
+// 
+ 
+  RadioStoryType = "image";
+  console.log("default type:"+RadioStoryType);
+
+// 
 
 var onBtnQueryHome = function (e)
 {      
   console.log("load page:" + page) ;
-
+  console.log("type:" + RadioStoryType) ;
   $.ajax
   (
     {
       type: "GET",  //拿取下面網頁資料
-      url: "https://staging.threal3d.com/api/v3/guest/stories/feed?page=" + page + "&per_page=25&story_type=image",
+      url: "https://staging.threal3d.com/api/v3/guest/stories/feed?page=" + page + "&per_page=25&story_type="+RadioStoryType,
       //contentType: 'application/json; charset=UTF-8', 
 
       success: function(data, status, jqXHR) 
@@ -29,8 +35,15 @@ var onBtnQueryHome = function (e)
           var jump_url_with_id = "story_info.html?story_id=" + data[i]["id"];
           
           str += "<td>";         
-          str += "<a href=\"" + jump_url_with_id + " \">";          
-          str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" max-width=150; height=150;>";
+          str += "<a href=\"" + jump_url_with_id + " \">";
+          // check storytype to show depthpic
+          if (RadioStoryType=="image") {
+            str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" max-width=150; height=150;>";
+          } 
+          else {
+            str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" max-width=150; height=150;>";
+          }          
+          
           str += "</a>";
           str += "</td>";        
 
@@ -57,5 +70,23 @@ $(document).ready
     { 
       onBtnQueryHome();
       $("#btn_query_story").on("click", onBtnQueryHome);
+      $("#videobutton").click(function()
+      {
+        page = 1;
+          RadioStoryType = "video";
+          console.log(RadioStoryType);
+          $("#table_query_result").text("");
+          onBtnQueryHome(RadioStoryType);
+      });
+      $("#imagebutton").click(function()
+      {
+          page = 1;
+          RadioStoryType = "image";
+          console.log(RadioStoryType);
+          $("#table_query_result").text("");
+          onBtnQueryHome(RadioStoryType);
+      });
     }
 );
+
+
