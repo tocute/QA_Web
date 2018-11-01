@@ -1,5 +1,3 @@
-//http://tarruda.github.io/bootstrap-datetimepicker/
-
 var page = 1 ;
 
 var onBtnQueryHome = function (e)
@@ -55,6 +53,7 @@ $(document).ready
 (
   function()
     { 
+      onBtnQueryHome();
       $("#btn_query_story").on("click", onBtnQueryHome);
     }
 );
