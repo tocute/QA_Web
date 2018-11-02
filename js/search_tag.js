@@ -1,3 +1,4 @@
+var BASE_URL = "https://staging.threal3d.com/api/v3";
 
 var query_popular = function (keyword)
 {
@@ -6,7 +7,7 @@ var query_popular = function (keyword)
   (
     {
       type: "GET",
-      url: "https://staging.threal3d.com/api/v3/search?number_of_tags=5&number_of_stories=20&keyword=" + keyword ,
+      url: BASE_URL + "/search?number_of_tags=5&number_of_stories=20&keyword=" + keyword ,
       success: function(data, status, jqXHR) 
       {
         $("#panel_query_result").text("");
@@ -77,6 +78,8 @@ $(document).ready
 (
   function()
   { 
+    BASE_URL = window.localStorage.getItem("base_url");
+
     var getPara, ParaVal;
     var aryPara = [];
     var strUrl = location.search;

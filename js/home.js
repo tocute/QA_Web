@@ -94,6 +94,7 @@ $(document).ready
   function()
     { 
       var temp = window.localStorage.getItem("region_index");
+      
       if(temp != undefined)
       {
         chooseBaseUrl(temp);

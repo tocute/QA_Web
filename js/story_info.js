@@ -1,6 +1,5 @@
-﻿//http://tarruda.github.io/bootstrap-datetimepicker/
+﻿var BASE_URL = "https://staging.threal3d.com/api/v3";
 
-var page = 1 ;
 
 /*var deleteStory = function (story_id)
 {
@@ -36,7 +35,7 @@ var queryInfo = function (story_id)
   (
     {
       type: "GET",  //拿取下面網頁資料
-      url: "https://staging.threal3d.com/api/v3/guest/stories/" + story_id ,
+      url: BASE_URL + "/guest/stories/" + story_id ,
       //contentType: 'application/json; charset=UTF-8', 
 
       success: function(data, status, jqXHR) 
@@ -94,6 +93,8 @@ $(document).ready
 (
     function()
     { 
+      BASE_URL = window.localStorage.getItem("base_url");
+
       var getPara, ParaVal;
       var aryPara = [];
       var strUrl = location.search;

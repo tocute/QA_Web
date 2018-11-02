@@ -1,4 +1,5 @@
 //http://tarruda.github.io/bootstrap-datetimepicker/
+var BASE_URL = "https://staging.threal3d.com/api/v3";
 
 var onBtnQueryPopular = function (e)
 {      
@@ -6,7 +7,7 @@ var onBtnQueryPopular = function (e)
   (
     {
       type: "GET",
-      url: "https://staging.threal3d.com/api/v3/search/tags/popular?number_of_stories=6",
+      url: BASE_URL + "/search/tags/popular?number_of_stories=6",
       //contentType: 'application/json; charset=UTF-8', 
 
       success: function(data, status, jqXHR) 
@@ -52,6 +53,7 @@ $(document).ready
 (
   function()
   { 
+    BASE_URL = window.localStorage.getItem("base_url");
     onBtnQueryPopular();
     //$("#btn_query_popular").on("click", BtnQueryPopular);
   }
