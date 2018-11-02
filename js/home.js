@@ -4,7 +4,7 @@ var page = 1 ;
 // 
  
   RadioStoryType = "image";
-  console.log("default type:"+RadioStoryType);
+  console.log("default type:"+ RadioStoryType);
 
 // 
 
@@ -27,6 +27,7 @@ var onBtnQueryHome = function (e)
         var str = "";
         var jump_url = "story_info.html?story_id=";
         
+
         for (var i = 0; i < data.length; i++) 
         {
           if(i % 5 == 0)  //秀五張然後換行
@@ -38,10 +39,11 @@ var onBtnQueryHome = function (e)
           str += "<a href=\"" + jump_url_with_id + " \">";
           // check storytype to show depthpic
           if (RadioStoryType=="image") {
-            str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" max-width=150; height=150;>";
-          } 
+            str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" width=150; height=150;>";
+          }
+          
           else {
-            str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" max-width=150; height=150;>";
+            str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" width=150; height=150;>";
           }          
           
           str += "</a>";
@@ -70,6 +72,7 @@ $(document).ready
     { 
       onBtnQueryHome();
       $("#btn_query_story").on("click", onBtnQueryHome);
+
       $("#videobutton").click(function()
       {
         page = 1;
@@ -78,6 +81,7 @@ $(document).ready
           $("#table_query_result").text("");
           onBtnQueryHome(RadioStoryType);
       });
+
       $("#imagebutton").click(function()
       {
           page = 1;
