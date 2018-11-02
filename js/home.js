@@ -1,5 +1,9 @@
 //http://tarruda.github.io/bootstrap-datetimepicker/
-
+var region = ["https://staging.threal3d.com/api/v3",
+              "https://www.threal3d.com/api/v3",
+              "https://www.threal3d.net/api/v3",
+              "https://beam-API.threal3d.com/api/v3"];
+var BASE_URL = region[0];
 var page = 1 ;
 // 
  
@@ -16,7 +20,7 @@ var onBtnQueryHome = function (e)
   (
     {
       type: "GET",  //拿取下面網頁資料
-      url: "https://staging.threal3d.com/api/v3/guest/stories/feed?page=" + page + "&per_page=25&story_type="+RadioStoryType,
+      url: BASE_URL+"/guest/stories/feed?page=" + page + "&per_page=25&story_type="+RadioStoryType,
       //contentType: 'application/json; charset=UTF-8', 
 
       success: function(data, status, jqXHR) 
@@ -66,30 +70,50 @@ var onBtnQueryHome = function (e)
   );
 }
 
+var chooseBaseUrl = function (index)
+{
+  for (var i = 0; i < region.length; i++) {
+    var temp = "#dropdown"+i
+    $(temp).removeClass("active");
+    if(i == index)
+    {
+      $(temp).addClass("active");
+      BASE_URL = region[index]
+      window.localStorage.setItem("region_index", index)
+      window.localStorage.setItem("base_url", BASE_URL)
+      
+      page = 1;
+      $("#table_query_result").text("");
+      onBtnQueryHome(RadioStoryType);
+    }  
+  }
+}
+
 $(document).ready
 (
   function()
     { 
-      onBtnQueryHome();
+      var temp = window.localStorage.getItem("region_index");
+      if(temp != undefined)
+      {
+        chooseBaseUrl(temp);
+      }
+      else
+      {
+        onBtnQueryHome();
+      }  
+      
       $("#btn_query_story").on("click", onBtnQueryHome);
 
-      $("#videobutton").click(function()
+      $("#chooseStoryType").click(function()
       {
+        RadioStoryType = $("input[name='storyType']:checked").val();
         page = 1;
-          RadioStoryType = "video";
-          console.log(RadioStoryType);
-          $("#table_query_result").text("");
-          onBtnQueryHome(RadioStoryType);
+
+        $("#table_query_result").text("");
+        onBtnQueryHome(RadioStoryType);
       });
 
-      $("#imagebutton").click(function()
-      {
-          page = 1;
-          RadioStoryType = "image";
-          console.log(RadioStoryType);
-          $("#table_query_result").text("");
-          onBtnQueryHome(RadioStoryType);
-      });
     }
 );
 
