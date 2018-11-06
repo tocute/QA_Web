@@ -1,5 +1,9 @@
-var BASE_URL = "https://staging.threal3d.com/api/v3";
-
+var region = ["https://staging.threal3d.com/api/v3",
+              "https://www.threal3d.com/api/v3",
+              "https://www.threal3d.net/api/v3",
+              "https://beam-API.threal3d.com/api/v3"];
+var BASE_URL = region[0];
+// 
 var query_popular = function (keyword)
 {
   console.log(keyword);
@@ -74,10 +78,39 @@ var btn_query_popular = function ()
   query_popular(keyword);
 }
 
+var chooseBaseUrl = function (index)
+{
+  for (var i = 0; i < region.length; i++) {
+    var temp = "#dropdown"+i
+    $(temp).removeClass("active");
+    if(i == index)
+    {
+      $(temp).addClass("active");
+      BASE_URL = region[index]
+      window.localStorage.setItem("region_index", index)
+      window.localStorage.setItem("base_url", BASE_URL)
+      
+      page = 1;
+      $("#table_query_result").text("");//clear #table_query_result
+      query_popular();
+    }  
+  }
+}
+
 $(document).ready
 (
   function()
   { 
+      var temp = window.localStorage.getItem("region_index");
+      
+      if(temp != undefined)
+      {
+        chooseBaseUrl(temp);
+      }
+      else
+      {
+        query_popular();
+      }     
     BASE_URL = window.localStorage.getItem("base_url");
 
     var getPara, ParaVal;

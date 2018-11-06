@@ -1,4 +1,8 @@
-﻿var BASE_URL = "https://staging.threal3d.com/api/v3";
+﻿var region = ["https://staging.threal3d.com/api/v3",
+              "https://www.threal3d.com/api/v3",
+              "https://www.threal3d.net/api/v3",
+              "https://beam-API.threal3d.com/api/v3"];
+var BASE_URL = region[0];
 
 
 /*var deleteStory = function (story_id)
@@ -88,7 +92,24 @@ var queryInfo = function (story_id)
     }
   );
 }
-
+var chooseBaseUrl = function (index)
+{
+  for (var i = 0; i < region.length; i++) {
+    var temp = "#dropdown"+i
+    $(temp).removeClass("active");//remove and active dropdown
+    if(i == index)
+    {
+      $(temp).addClass("active");
+      BASE_URL = region[index]
+      window.localStorage.setItem("region_index", index)
+      window.localStorage.setItem("base_url", BASE_URL)
+      
+      page = 1;
+      $("#query_result_info").text("");//clear #table_query_result
+      //queryInfo();//不管在哪個sever情況下都可以藉由storyid取得圖片資訊
+    }  
+  }
+}
 $(document).ready
 (
     function()
