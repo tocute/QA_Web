@@ -81,11 +81,20 @@ var queryInfo = function (story_id)
             }          
         }
 
-
         // 
         //str +=  "tags:"+data["tags"];
         $("#query_result_info").append(str);
-
+        //index() 比對email
+        var email = data["user"]["email"]
+        // console.log(email)
+        // skr1=email.indexOf("service")        
+        // console.log(skr1)
+        // skr2=email.indexOf("@theia.tw")        
+        // console.log(skr2)
+        if(email.indexOf("service")*email.indexOf("@theia.tw")>=0)
+        {
+        alert("email含有此字符串sevice &@theia.tw");
+        }
 
         // console.log(data);
         // if(data["user"]["email"] == 'service@theia.tw')
