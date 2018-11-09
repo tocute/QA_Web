@@ -14,7 +14,7 @@ var page = 1 ;
 
 var onBtnQueryHome = function (e)
 { 
-  $("#spinner").toggle(500);     
+  $("#spinner").show(500);     
   console.log("load page:" + page) ;
   console.log("type:" + RadioStoryType) ;
   $.ajax
@@ -57,7 +57,7 @@ var onBtnQueryHome = function (e)
           if(i % 5 == 4 || i == data.length -1)
             str += "</tr>"; 
         }
-        $("#spinner").toggle(500); 
+        $("#spinner").hide(500); 
         $("#table_query_result").append(str);
         console.log(data);
         //alert(data);

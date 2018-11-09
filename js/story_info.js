@@ -64,18 +64,23 @@ var queryInfo = function (story_id)
           str += '</a>'
         }
         // videoplayer
-        var video = document.getElementById('video');
-        if(Hls.isSupported()) {
+        console.log(data["user"]["is_video"]) 
+        if(data["is_video"]==true){
+            $("#video").show();
+            var video = document.getElementById('video');
+            if(Hls.isSupported()) {
 
-        var hls = new Hls();
-        // console.log(data["video"]["hls"]);
-        // hls.loadSource('https://d14wqkorlwak8z.cloudfront.net/uploads/story/video/65d07226-9831-45ff-b799-663541032024/45ca0e08055a2bb1f9614ca2d4306823.m3u8');
-        hls.loadSource(data["video"]["hls"]);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED,function() {
-          // video.play();
-          });
+            var hls = new Hls();
+            // console.log(data["video"]["hls"]);
+            // hls.loadSource('https://d14wqkorlwak8z.cloudfront.net/uploads/story/video/65d07226-9831-45ff-b799-663541032024/45ca0e08055a2bb1f9614ca2d4306823.m3u8');
+            hls.loadSource(data["video"]["hls"]);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED,function() {
+              // video.play();
+              });
+            }          
         }
+
 
         // 
         //str +=  "tags:"+data["tags"];
