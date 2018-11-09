@@ -37,7 +37,6 @@ var queryInfo = function (story_id)
       type: "GET",  //拿取下面網頁資料
       url: BASE_URL + "/guest/stories/" + story_id ,
       //contentType: 'application/json; charset=UTF-8', 
-
       success: function(data, status, jqXHR) 
       {
         var str = "";
@@ -64,14 +63,26 @@ var queryInfo = function (story_id)
           str += data["tags"][i];
           str += '</a>'
         }
+        // videoplayer
+        var video = document.getElementById('video');
+        if(Hls.isSupported()) {
 
+        var hls = new Hls();
+        // console.log(data["video"]["hls"]);
+        // hls.loadSource('https://d14wqkorlwak8z.cloudfront.net/uploads/story/video/65d07226-9831-45ff-b799-663541032024/45ca0e08055a2bb1f9614ca2d4306823.m3u8');
+        hls.loadSource(data["video"]["hls"]);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED,function() {
+          // video.play();
+          });
+        }
 
         // 
         //str +=  "tags:"+data["tags"];
         $("#query_result_info").append(str);
 
 
-        console.log(data);
+        // console.log(data);
         // if(data["user"]["email"] == 'service@theia.tw')
         // {
         //   var btn_str = '<button type="button" class="btn btn-danger" onclick="deleteStory(\''+story_id+'\')">'
