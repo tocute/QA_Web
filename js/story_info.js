@@ -80,10 +80,6 @@ var queryInfo = function (story_id)
               });
             }          
         }
-
-        // 
-        //str +=  "tags:"+data["tags"];
-        $("#query_result_info").append(str);
         //index() 比對email
         var email = data["user"]["email"]
         // console.log(email)
@@ -94,7 +90,12 @@ var queryInfo = function (story_id)
         if(email.indexOf("service")*email.indexOf("@theia.tw")>=0)
         {
         alert("email含有此字符串sevice &@theia.tw");
+        str += "<button type='button' class='btn btn-danger'>red button</button>"
         }
+        // 
+        //str +=  "tags:"+data["tags"];
+        $("#query_result_info").append(str);
+
 
         // console.log(data);
         // if(data["user"]["email"] == 'service@theia.tw')
