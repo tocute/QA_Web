@@ -64,19 +64,34 @@ var queryInfo = function (story_id)
           str += '</a>'
         }
         // videoplayer
-        var video = document.getElementById('video');
-        if(Hls.isSupported()) {
+        console.log(data["user"]["is_video"]) 
+        if(data["is_video"]==true){
+            $("#video").show();
+            var video = document.getElementById('video');
+            if(Hls.isSupported()) {
 
-        var hls = new Hls();
-        // console.log(data["video"]["hls"]);
-        // hls.loadSource('https://d14wqkorlwak8z.cloudfront.net/uploads/story/video/65d07226-9831-45ff-b799-663541032024/45ca0e08055a2bb1f9614ca2d4306823.m3u8');
-        hls.loadSource(data["video"]["hls"]);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED,function() {
-          // video.play();
-          });
+            var hls = new Hls();
+            // console.log(data["video"]["hls"]);
+            // hls.loadSource('https://d14wqkorlwak8z.cloudfront.net/uploads/story/video/65d07226-9831-45ff-b799-663541032024/45ca0e08055a2bb1f9614ca2d4306823.m3u8');
+            hls.loadSource(data["video"]["hls"]);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED,function() {
+              // video.play();
+              });
+            }          
         }
-
+        //index() 比對email
+        var email = data["user"]["email"]
+        // console.log(email)
+        // skr1=email.indexOf("service")        
+        // console.log(skr1)
+        // skr2=email.indexOf("@theia.tw")        
+        // console.log(skr2)
+        if(email.indexOf("service")*email.indexOf("@theia.tw")>=0)
+        {
+        alert("email含有此字符串sevice &@theia.tw");
+        str += "<button type='button' class='btn btn-danger'>red button</button>"
+        }
         // 
         //str +=  "tags:"+data["tags"];
         $("#query_result_info").append(str);

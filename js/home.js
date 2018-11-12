@@ -15,7 +15,8 @@ var page = 1 ;
 // 
 
 var onBtnQueryHome = function (e)
-{      
+{ 
+  $("#spinner").show(500);     
   console.log("load page:" + page) ;
   console.log("type:" + RadioStoryType) ;
   $.ajax
@@ -60,7 +61,7 @@ var onBtnQueryHome = function (e)
           if(i % 5 == 4 || i == data.length -1)
             str += "</tr>"; 
         }
-
+        $("#spinner").hide(500); 
         $("#table_query_result").append(str);
         console.log(data);
         //alert(data);
@@ -68,7 +69,7 @@ var onBtnQueryHome = function (e)
       error: function(jqXHR, textStatus, errorThrown)
       { 
           console.log(errorThrown) ; 
-          alert('Failed!'); 
+          alert('Failed! check allow control allow origin'); 
       }
     }
   );
