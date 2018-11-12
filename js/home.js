@@ -1,4 +1,6 @@
 //http://tarruda.github.io/bootstrap-datetimepicker/
+
+
 var region = ["https://staging.threal3d.com/api/v3",
               "https://www.threal3d.com/api/v3",
               "https://www.threal3d.net/api/v3",
@@ -43,12 +45,14 @@ var onBtnQueryHome = function (e)
           str += "<td>";         
           str += "<a href=\"" + jump_url_with_id + " \">";
           // check storytype to show depthpic
+          
           if (RadioStoryType=="image") {
-            str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" width=150; height=150;>";
+
+            str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" >";
           }
           
           else {
-            str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" width=150; height=150;>";
+            str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" >";
           }          
           
           str += "</a>";
