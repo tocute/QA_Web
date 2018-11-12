@@ -30,7 +30,8 @@
 }*/
 
 var queryInfo = function (story_id)
-{      
+{ 
+  $("#spinner").show(500);     
   $.ajax
   (
     {
@@ -41,9 +42,11 @@ var queryInfo = function (story_id)
       {
         var str = "";
         //str += "<div>";
-        str += "<img src=\" "+ data["color"]["fit_1280"] + " \"   height=300;>";
-        str += "  ";
-        str += "<img src=\" "+ data["depth"]["original"] + " \"   height=300;>";
+        if(data["is_video"]==false){
+          str += "<img src=\" "+ data["color"]["fit_1280"] + " \"   height=300;>";
+          str += "  ";
+          str += "<img src=\" "+ data["depth"]["original"] + " \"   height=300;>";
+        }
         $("#query_result").append(str);
 
         str = "";
@@ -63,22 +66,25 @@ var queryInfo = function (story_id)
           str += data["tags"][i];
           str += '</a>'
         }
+        $("#spinner").hide(500);
         // videoplayer
         console.log(data["user"]["is_video"]) 
         if(data["is_video"]==true){
-            $("#video").show();
-            var video = document.getElementById('video');
+            $("#color_video").show();
+            var video = document.getElementById('color_video');
             if(Hls.isSupported()) {
 
             var hls = new Hls();
             // console.log(data["video"]["hls"]);
             // hls.loadSource('https://d14wqkorlwak8z.cloudfront.net/uploads/story/video/65d07226-9831-45ff-b799-663541032024/45ca0e08055a2bb1f9614ca2d4306823.m3u8');
-            hls.loadSource(data["video"]["hls"]);
-            hls.attachMedia(video);
+            hls.loadSource(data["separated_color_depth_video"]["color_video"]["hls"]);
+            // hls.loadSource(data["separated_color_depth_video"]["depth_video"]["hls"]);
+            hls.attachMedia(color_video);
             hls.on(Hls.Events.MANIFEST_PARSED,function() {
               // video.play();
               });
-            }          
+            }
+            $("#spinner").hide(500);          
         }
         //index() 比對email
         var email = data["user"]["email"]
@@ -90,7 +96,7 @@ var queryInfo = function (story_id)
         if(email.indexOf("service")*email.indexOf("@theia.tw")>=0)
         {
         alert("email含有此字符串sevice &@theia.tw");
-        str += "<button type='button' class='btn btn-danger'>red button</button>"
+        str += "<button type='button' class='btn btn-danger'>delete</button>"
         }
         // 
         //str +=  "tags:"+data["tags"];
