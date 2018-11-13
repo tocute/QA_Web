@@ -1,12 +1,67 @@
+
 var region = ["https://staging.threal3d.com/api/v3",
               "https://www.threal3d.com/api/v3",
               "https://www.threal3d.net/api/v3",
               "https://beam-API.threal3d.com/api/v3"];
 var BASE_URL = region[0];
+var onBtnQueryPopular = function (e)//出現popular內容
+{ $("#spinner").show();     
+  $.ajax
+  (
+    {
+      type: "GET",
+      url: BASE_URL + "/search/tags/popular?number_of_stories=6",
+      //contentType: 'application/json; charset=UTF-8', 
 
-var query_popular = function (keyword)
+      success: function(data, status, jqXHR) 
+      {
+        var str = "";
+        console.log(data.length);
+
+        for (var z = 0 ; z < data.length ; z++)
+        {
+          console.log(data[z]);
+          var jump_url_with_tag = "search_tag.html?keyword=" + data[z]["tag"];
+          str += '<div class="panel panel-info">';
+          str += '<div class="panel-heading">';
+          str += "<a href=\"" + jump_url_with_tag + " \">"; 
+          str += data[z]["tag"];
+          str += '</a>'
+          str += '</div>';
+          str += '<div class="panel-body">';
+
+          for (var i = 0; i < data[z]["stories"].length; i++) 
+          { var jump_url_with_id = "story_info.html?story_id=" + data[z]["stories"][i]["id"];
+            str += "&nbsp";
+            str += "<a href=\"" + jump_url_with_id + " \">";
+          // check storytype to show depthpic
+            str += "<img src=\""+ data[z]["stories"][i]["color"]["fit_160"] +"\" width = 150>"
+            str += "</a>";
+
+          }
+
+          str += '</div>';
+          str += '</div>';
+        }
+        
+
+        $("#panel_query_result").append(str);
+        $("#spinner").hide(300);
+        //alert(data);
+      },
+
+      error: function(jqXHR, textStatus, errorThrown) 
+      { 
+          console.log(errorThrown) ;//alert('Failed!'); 
+      }
+
+    }
+  );
+}
+var query_popular = function (keyword)//search
 {
   console.log(keyword);
+  $("#spinner").show();
   $.ajax
   (
     {
@@ -31,7 +86,7 @@ var query_popular = function (keyword)
               var jump_url_with_id = "story_info.html?story_id=" + data["story_tag"][t]["stories"][i]["id"];          
               str += "<a href=\"" + jump_url_with_id + " \">";
 
-              str += "<img src=\""+ data["story_tag"][t]["stories"][i]["color"]["fit_160"] +"\" width = 150 height = 150>"
+              str += "<img src=\""+ data["story_tag"][t]["stories"][i]["color"]["fit_160"] +"\" width = 150>"
               
               str += "</a>";
             }
@@ -52,7 +107,7 @@ var query_popular = function (keyword)
           {
             var jump_url_with_id = "story_info.html?story_id=" + data["story_description"][i]["id"];          
             str += "<a href=\"" + jump_url_with_id + " \">";
-            str += "<img src=\""+ data["story_description"][i]["color"]["fit_160"] +"\" width = 150 height = 150>"
+            str += "<img src=\""+ data["story_description"][i]["color"]["fit_160"] +"\" width = 150 >"
             str += "</a>";
           }
           str += '</div>';
@@ -60,6 +115,7 @@ var query_popular = function (keyword)
         }
 
         $("#panel_query_result").append(str);
+        $("#spinner").hide(300);
       },
 
       error: function(jqXHR, textStatus, errorThrown) 
@@ -92,16 +148,19 @@ var chooseBaseUrl = function (index)
       
       page = 1;
       $("#panel_query_result").text("");
-      query_popular(RadioStoryType);
+      query_popular();//search
+      onBtnQueryPopular();//popular
+      
     }  
   }
+  
 }
 $(document).ready
 (
   function()
   { 
     BASE_URL = window.localStorage.getItem("base_url");
-
+    onBtnQueryPopular();
     var getPara, ParaVal;
     var aryPara = [];
     var strUrl = location.search;

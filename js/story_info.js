@@ -31,13 +31,14 @@
 
 var queryInfo = function (story_id)
 { 
-  $("#spinner").show(500);     
+  $("#spinner").show();     
   $.ajax
   (
     {
       type: "GET",  //拿取下面網頁資料
       url: BASE_URL + "/guest/stories/" + story_id ,
-      //contentType: 'application/json; charset=UTF-8', 
+      //contentType: 'application/json; charset=UTF-8',
+
       success: function(data, status, jqXHR) 
       {
         var str = "";
@@ -66,7 +67,7 @@ var queryInfo = function (story_id)
           str += data["tags"][i];
           str += '</a>'
         }
-        $("#spinner").hide(500);
+        $("#spinner").hide(300);
         // videoplayer
         console.log(data["user"]["is_video"]) 
         if(data["is_video"]==true){
@@ -79,29 +80,23 @@ var queryInfo = function (story_id)
             // hls.loadSource('https://d14wqkorlwak8z.cloudfront.net/uploads/story/video/65d07226-9831-45ff-b799-663541032024/45ca0e08055a2bb1f9614ca2d4306823.m3u8');
             hls.loadSource(data["separated_color_depth_video"]["color_video"]["hls"]);
             // hls.loadSource(data["separated_color_depth_video"]["depth_video"]["hls"]);
-            hls.attachMedia(color_video);
+            hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED,function() {
               // video.play();
               });
             }
             $("#spinner").hide(500);          
         }
-        //index() 比對email
-        var email = data["user"]["email"]
-        // console.log(email)
-        // skr1=email.indexOf("service")        
-        // console.log(skr1)
-        // skr2=email.indexOf("@theia.tw")        
-        // console.log(skr2)
-        if(email.indexOf("service")*email.indexOf("@theia.tw")>=0)
-        {
-        alert("email含有此字符串sevice &@theia.tw");
-        str += "<button type='button' class='btn btn-danger'>delete</button>"
-        }
         // 
         //str +=  "tags:"+data["tags"];
         $("#query_result_info").append(str);
 
+        var email = data["user"]["email"]
+        if(email.startsWith("service") && email.endsWith("@theia.tw"))//startsWith()比對W要大寫
+        {
+          alert("email含有此字符串sevice &@theia.tw");
+          str += "<button type='button' class='btn btn-danger'>Delete</button>"
+        }
 
         // console.log(data);
         // if(data["user"]["email"] == 'service@theia.tw')
@@ -146,6 +141,8 @@ $(document).ready
           }          
         }
         queryInfo(story_id);
+        console.log("story_id:"+story_id);
       }
+      if(story_id==""){alert('story_id="null"')}
     }
 );
