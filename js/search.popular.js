@@ -6,7 +6,7 @@ var region = ["https://staging.threal3d.com/api/v3",
 var BASE_URL = region[0];
 
 var onBtnQueryPopular = function (e)
-{      
+{ $("#spinner").show(); 
   $.ajax
   (
     {
@@ -43,7 +43,7 @@ var onBtnQueryPopular = function (e)
         
 
         $("#panel_query_result").append(str);
-        
+        $("#spinner").hide(300);
         //alert(data);
       },
 

@@ -19,14 +19,9 @@
 
 
     <ul class="nav navbar-nav">
-      <li class="dropdown">
-        <a class="btn dropdown-toggle" data-toggle="dropdown"> THEIA <span class="caret"></span> </a>
-          <ul class="dropdown-menu">
-            <li class="active" id="dropdown0"> <a class="dropdown-item" onclick="chooseBaseUrl(0)"> Beta </a></li>
-            <li id="dropdown1"> <a class="dropdown-item" onclick="chooseBaseUrl(1)"> TW </a></li>
-            <li id="dropdown2"> <a class="dropdown-item" onclick="chooseBaseUrl(2)"> CN </a></li>
-            <li id="dropdown3"> <a class="dropdown-item" onclick="chooseBaseUrl(3)"> US </a></li>
-          </ul> 
+      <li class="">
+        <a class="navbar-brand" > THEIA <span class="caret"></span> </a>
+
       </li>
       
       <li>
@@ -37,12 +32,8 @@
         <a class="navbar-brand" href="search_popular.html"> Search Popular </a>
       </li> 
 
-      <li class="active">
-        <a class="navbar-brand" href="story_info.html"> Story </a>
-      </li> 
-
       <li>
-        <a class="navbar-brand" href="search_tag.html"> Search tag </a>
+        <a class="navbar-brand" href="search_tag.html"> Search </a>
       </li> 
 
     </ul>
@@ -61,6 +52,9 @@
     
   </div>
 </div>
+
+<div align="center" style="z-index:99;position: fixed;top: 50%;left: 50%;">  
+  <img src="ajax-loader.gif"  width="200" id="spinner" Align=center style="display: none;"> 
 <!----------------------  -->
 <br>
 

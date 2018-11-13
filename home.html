@@ -4,6 +4,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title> Query Threal </title>
+    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -42,7 +43,7 @@
       <!-- </li>  -->
 
       <li>
-        <a class="navbar-brand" href="search_tag.html"> Search tag </a>
+        <a class="navbar-brand" href="search_tag.html"> Search </a>
       </li> 
 
     </ul>
@@ -50,25 +51,27 @@
 
   <br>
 
-    <form>
+    <form align="center">
       <label class="radio-inline">
         <input type="radio" name="storyType" value="image" checked> Photo
       </label>
       <label class="radio-inline">
         <input type="radio" name="storyType" value="video" > Video
       </label>
-    </form>
-
-    <button id="chooseStoryType"> image </button>
+      </form>
+      <div align="center">
+        <button  id="chooseStoryType"> Change </button>
+      </div>
+        
 
 
   <br>
 
 
 
-  <div class="table-responsive">
+  <div class="container">
     <table class="table table-hover table-striped" >
-      <tbody id="table_query_result">
+      <tbody  id="table_query_result">
 
         
 
@@ -77,10 +80,12 @@
   </div>
 
 &emsp;&emsp;
+<div align="center" style="z-index:99;position: fixed;top: 50%;left: 50%;">  
+  <img src="ajax-loader.gif"  width="200" id="spinner" Align=center style="display: none;"> 
+</div>
+
 <div align="center">
-  <img src="ajax-loader.gif"  width="200" id="spinner" Align=center style="display: none;">        
-  <br>
-  <button id="btn_query_story" type="button" class="btn btn-default"> View more... </button>
+  <button id="btn_query_story" type="button" class="btn btn-success btn-lg " > View more... </button>
 </div>
 
 
