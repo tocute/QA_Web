@@ -1,5 +1,9 @@
 //http://tarruda.github.io/bootstrap-datetimepicker/
-var BASE_URL = "https://staging.threal3d.com/api/v3";
+var region = ["https://staging.threal3d.com/api/v3",
+              "https://www.threal3d.com/api/v3",
+              "https://www.threal3d.net/api/v3",
+              "https://beam-API.threal3d.com/api/v3"];
+var BASE_URL = region[0];
 
 var onBtnQueryPopular = function (e)
 {      
@@ -50,6 +54,26 @@ var onBtnQueryPopular = function (e)
 
     }
   );
+}
+
+
+var chooseBaseUrl = function (index)
+{
+  for (var i = 0; i < region.length; i++) {
+    var temp = "#dropdown"+i
+    $(temp).removeClass("active");
+    if(i == index)
+    {
+      $(temp).addClass("active");
+      BASE_URL = region[index]
+      window.localStorage.setItem("region_index", index)
+      window.localStorage.setItem("base_url", BASE_URL)
+      
+      page = 1;
+      $("#panel_query_result").text("");
+      onBtnQueryPopular();
+    }  
+  }
 }
 // 在文档加载后激活函数：
 $(document).ready 
