@@ -16,7 +16,7 @@ var page = 1 ;
 
 var onBtnQueryHome = function (e)
 { 
-  $("#spinner").show(500);     
+  $("#spinner").show();     
   console.log("load page:" + page) ;
   console.log("type:" + RadioStoryType) ;
   $.ajax
@@ -47,12 +47,18 @@ var onBtnQueryHome = function (e)
           // check storytype to show depthpic
           
           if (RadioStoryType=="image") {
-
-            str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" >";
+              var email = data[i]["user"]["email"]
+            if(email.startsWith("service") && email.endsWith("@theia.tw"))//startsWith()比對W要大寫
+            {str += "<img src=\" " + data[i]["color"]["fit_160"] + " \"   onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\"  class='redsolid' width=200>";
+            }
+            else{
+            str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" width=200>";  
+            }
+            
           }
           
           else {
-            str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" >";
+            str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" width=200>";
           }          
           
           str += "</a>";
@@ -61,7 +67,7 @@ var onBtnQueryHome = function (e)
           if(i % 5 == 4 || i == data.length -1)
             str += "</tr>"; 
         }
-        $("#spinner").hide(500); 
+        $("#spinner").hide(300); 
         $("#table_query_result").append(str);
         console.log(data);
         //alert(data);
@@ -69,7 +75,14 @@ var onBtnQueryHome = function (e)
       error: function(jqXHR, textStatus, errorThrown)
       { 
           console.log(errorThrown) ; 
-          alert('Failed! check allow control allow origin'); 
+          alert('Failed!');
+          alert(jqXHR.responseText);
+          alert(jqXHR.status);
+          alert(jqXHR.readyState);
+          alert(jqXHR.statusText);
+          /*弹出其他两个参数的信息*/
+          alert(textStatus);
+          alert(errorThrown); 
       }
     }
   );
