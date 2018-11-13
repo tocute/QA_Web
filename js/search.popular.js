@@ -28,7 +28,10 @@ var onBtnQueryPopular = function (e)
           str += '<div class="panel-body">';
           for (var i = 0; i < data[z]["stories"].length; i++) 
           {
+            str += "<a href=\"" + jump_url_with_id + " \">";
+          // check storytype to show depthpic
             str += "<img src=\""+ data[z]["stories"][i]["color"]["fit_160"] +"\" width = 150 height = 150>"
+            str += "</a>";
           }
           str += '</div>';
           str += '</div>';
