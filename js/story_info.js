@@ -53,11 +53,11 @@ var queryInfo = function (story_id)
         str = "";
         str = "<br>";
         str +="<i class='fas fa-user'></i>";
-        str += "<img src=\" "+ data["user"]["image"] + " \"   height=40;>";
+        str += "<img src=\" "+ data["user"]["image"] + " \"  class='img-rounded' height=60;>";
         str +=  "uesername:"+ data["user"]["name"]+" <br> ";
-        str +=  "updated_at" + data["updated_at"]+" <br> "; 
-        str +=  "email:" + data["user"]["email"]+" <br> "; 
-        str +=  "<i class='far fa-file-alt'></i>"+"description:"+ data["description"]+" <br> ";
+        str +=  "<i class='fas fa-calendar-alt'></i>"+"updated_at" + data["updated_at"]+" <br> "; 
+        str +=  "<i class='fas fa-envelope'></i>"+"email:" + data["user"]["email"]+" <br> "; 
+        str +=  "<i class='fas fa-file'></i>"+"description:"+ data["description"]+" <br> ";
         // Variety for tag
         str +=  "<i class='fas fa-tag'></i>"+"tags : ";
         // tag with hyperlink
