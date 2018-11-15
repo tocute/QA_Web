@@ -57,7 +57,7 @@ var queryInfo = function (story_id)
         str +=  "uesername:"+ data["user"]["name"]+" <br> ";
         str +=  "updated_at" + data["updated_at"]+" <br> "; 
         str +=  "email:" + data["user"]["email"]+" <br> "; 
-        str +=  "description:"+ data["description"]+" <br> ";
+        str +=  "<i class='far fa-file-alt'></i>"+"description:"+ data["description"]+" <br> ";
         // Variety for tag
         str +=  "<i class='fas fa-tag'></i>"+"tags : ";
         // tag with hyperlink
@@ -74,21 +74,26 @@ var queryInfo = function (story_id)
             $("#color_video").show();
             var video = document.getElementById('color_video');
             if(Hls.isSupported()) {
-
-            var hls = new Hls();
-            // console.log(data["video"]["hls"]);
-            // hls.loadSource('https://d14wqkorlwak8z.cloudfront.net/uploads/story/video/65d07226-9831-45ff-b799-663541032024/45ca0e08055a2bb1f9614ca2d4306823.m3u8');
+            var hls = new Hls();            
             hls.loadSource(data["separated_color_depth_video"]["color_video"]["hls"]);
             // hls.loadSource(data["separated_color_depth_video"]["depth_video"]["hls"]);
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED,function() {
-              // video.play();
               });
             }
+            //
+            $("#depth_video").show(); 
+            var video = document.getElementById('depth_video');
+            if(Hls.isSupported()) {
+            var hls = new Hls();            
+            hls.loadSource(data["separated_color_depth_video"]["depth_video"]["hls"]);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED,function() {
+              });
+            }
+            // 
             $("#spinner").hide(500);          
         }
-        // 
-        //str +=  "tags:"+data["tags"];
         $("#query_result_info").append(str);
 
         var email = data["user"]["email"]
