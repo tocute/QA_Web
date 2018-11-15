@@ -4,12 +4,12 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title> Query Threal </title>
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/custom.css">    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="css/home.js"></script>
     <script src="js/home.js"></script>
 
 </head>
@@ -56,24 +56,36 @@
       </label>
       </form>
       <div align="center">
-        <button  id="chooseStoryType"> Change </button>
+        <button  id="chooseStoryType"> Switch </button>
+        <br>
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+        </label>
+        <!--  -->
+        <div class="switch" data-on-label="SI" data-off-label="NO">
+    <input type="checkbox" checked />
+</div>
+        image/video
       </div>
         
 
 
   <br>
-
-
-
-  <div class="container">
+<div class="container">
+  <div class="panel panel-default"  >
+    <div class="panel-heading" id="">Home</div>
+    <div class="panel-body" id="">
+      <!--  -->
     <table class="table table-hover table-striped" >
       <tbody  id="table_query_result">
-
-        
-
       </tbody>
     </table>
+      <!--  -->
+    </div>
   </div>
+</div>
+
 
 &emsp;&emsp;
 <div align="center" style="z-index:99;position: fixed;top: 50%;left: 50%;">  

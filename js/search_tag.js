@@ -24,7 +24,8 @@ var onBtnQueryPopular = function (e)//出現popular內容
           var jump_url_with_tag = "search_tag.html?keyword=" + data[z]["tag"];
           str += '<div class="panel panel-info">';
           str += '<div class="panel-heading">';
-          str += "<a href=\"" + jump_url_with_tag + " \">"; 
+          str += "<a href=\"" + jump_url_with_tag + " \">";
+          str +=  "<i class='fas fa-tag'></i>"; 
           str += data[z]["tag"];
           str += '</a>'
           str += '</div>';

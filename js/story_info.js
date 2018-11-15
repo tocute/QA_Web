@@ -51,20 +51,20 @@ var queryInfo = function (story_id)
         $("#query_result").append(str);
 
         str = "";
-        str += "<img src=\" "+ data["user"]["image"] + " \"   height=80;>";
-        str = "";        
-
-        str +=  data["user"]["name"]+" / ";
-        str +=  data["updated_at"]+"/"; 
-        str +=  data["user"]["email"]+" / "; 
-        str +=  "description:"+ data["description"]+" / ";
+        str = "<br>";
+        str +="<i class='fas fa-user'></i>";
+        str += "<img src=\" "+ data["user"]["image"] + " \"   height=40;>";
+        str +=  "uesername:"+ data["user"]["name"]+" <br> ";
+        str +=  "updated_at" + data["updated_at"]+" <br> "; 
+        str +=  "email:" + data["user"]["email"]+" <br> "; 
+        str +=  "description:"+ data["description"]+" <br> ";
         // Variety for tag
-     
+        str +=  "<i class='fas fa-tag'></i>"+"tags : ";
         // tag with hyperlink
         for (var i =0 ; i < data["tags"].length; i++) {
         var jump_url_with_id = "search_tag.html?keyword=" + data["tags"][i];   
-          str += "<a href=\"" + jump_url_with_id + " \">"; 
-          str += data["tags"][i];
+          str += "<a href=\"" + jump_url_with_id + " \">";
+          str +="<span class='badge badge-secondary'>"+data["tags"][i]+"</span>"; 
           str += '</a>'
         }
         $("#spinner").hide(300);
