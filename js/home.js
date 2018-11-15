@@ -8,10 +8,8 @@ var region = ["https://staging.threal3d.com/api/v3",
 var BASE_URL = region[0];
 var page = 1 ;
 // 
- 
   RadioStoryType = "image";
   console.log("default type:"+ RadioStoryType);
-
 // 
 
 var onBtnQueryHome = function (e)
@@ -30,40 +28,35 @@ var onBtnQueryHome = function (e)
       {
 
         page = page + 1 ;  //成功的話，每按一次查訊就會再download下一頁資訊
-
         var str = "";
         var jump_url = "story_info.html?story_id=";
-        
-
         for (var i = 0; i < data.length; i++) 
         {
           if(i % 5 == 0)  //秀五張然後換行
             str += "<tr>";
-
           var jump_url_with_id = "story_info.html?story_id=" + data[i]["id"];
-          
           str += "<td>";         
           str += "<a href=\"" + jump_url_with_id + " \">";
           // check storytype to show depthpic
-          
+          var email = data[i]["user"]["email"]
           if (RadioStoryType=="image") {
-              var email = data[i]["user"]["email"]
             if(email.startsWith("service") && email.endsWith("@theia.tw"))//startsWith()比對W要大寫
             {str += "<img src=\" " + data[i]["color"]["fit_160"] + " \"   onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\"  class='redsolid' width=200>";
             }
             else{
             str += "<img src=\" " + data[i]["color"]["fit_160"] + " \" onmouseover=\"src=' " + data[i]["depth"]["original"] + "'\" onmouseout=\"src='" + data[i]["color"]["fit_160"] + "'\" width=200>";  
-            }
-            
+            } 
           }
-          
           else {
+            if(email.startsWith("service") && email.endsWith("@theia.tw"))//startsWith()比對W要大寫
+            {str += "<img src=\" " + data[i]["color"]["fit_160"] + " \"     class='redsolid' width=200>";
+            }
+            else{            
             str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" width=200>";
+            }
           }          
-          
           str += "</a>";
-          str += "</td>";        
-
+          str += "</td>";       
           if(i % 5 == 4 || i == data.length -1)
             str += "</tr>"; 
         }
@@ -76,18 +69,27 @@ var onBtnQueryHome = function (e)
       { 
           console.log(errorThrown) ; 
           alert('Failed!');
-          alert(jqXHR.responseText);
-          alert(jqXHR.status);
-          alert(jqXHR.readyState);
-          alert(jqXHR.statusText);
-          /*弹出其他两个参数的信息*/
-          alert(textStatus);
-          alert(errorThrown); 
       }
     }
   );
 }
-
+// 
+function checkbox() 
+{
+  if(document.getElementById("checkbox").checked) {
+    RadioStoryType="video"
+    page = "1" ;
+      $("#table_query_result").text("");
+      onBtnQueryHome(RadioStoryType,page);
+  }
+  else{
+    RadioStoryType="image"
+    page = "1" ;
+    $("#table_query_result").text("");
+    onBtnQueryHome(RadioStoryType,page);
+  }
+}
+// 
 var chooseBaseUrl = function (index)
 {
   for (var i = 0; i < region.length; i++) {
@@ -106,7 +108,9 @@ var chooseBaseUrl = function (index)
     }  
   }
 }
+// 
 
+// 
 $(document).ready
 (
   function()
@@ -124,14 +128,7 @@ $(document).ready
       
       $("#btn_query_story").on("click", onBtnQueryHome);
 
-      $("#chooseStoryType").click(function()
-      {
-        RadioStoryType = $("input[name='storyType']:checked").val();
-        page = 1;
 
-        $("#table_query_result").text("");
-        onBtnQueryHome(RadioStoryType);
-      });
 
     }
 );
