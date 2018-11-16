@@ -24,9 +24,9 @@ var onBtnQueryPopular = function (e)//出現popular內容
           var jump_url_with_tag = "search_tag.html?keyword=" + data[z]["tag"];
           str += '<div class="panel panel-info">';
           str += '<div class="panel-heading">';
+          str +=  "<i class='fas fa-tag'>  </i>"; 
           str += "<a href=\"" + jump_url_with_tag + " \">";
-          str +=  "<i class='fas fa-tag'></i>"; 
-          str += data[z]["tag"];
+          str += "  "+data[z]["tag"];
           str += '</a>'
           str += '</div>';
           str += '<div class="panel-body">';
@@ -36,7 +36,7 @@ var onBtnQueryPopular = function (e)//出現popular內容
             str += "&nbsp";
             str += "<a href=\"" + jump_url_with_id + " \">";
           // check storytype to show depthpic
-            str += "<img src=\""+ data[z]["stories"][i]["color"]["fit_160"] +"\" width = 150>"
+            str += "<img src=\""+ data[z]["stories"][i]["color"]["fit_160"] +"\" width = 150 style='vertical-align:top;'>"
             str += "</a>";
 
           }
