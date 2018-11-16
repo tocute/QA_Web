@@ -51,52 +51,56 @@ var queryInfo = function (story_id)
         $("#query_result").append(str);
 
         str = "";
-        str = "<br>";
         str += "<img src=\" "+ data["user"]["image"] + " \"  class='img-circle' height=60;>";
-        str +=  data["user"]["name"]+" <br> ";
-        str +=  "<i class='fas fa-calendar-alt'></i>"+"updated_at: " + data["updated_at"]+" <br> "; 
-        str +=  "<i class='fas fa-envelope'></i>"+"email: " + data["user"]["email"]+" <br> "; 
-        str +=  "<i class='fas fa-file'></i>"+"description: "+ data["description"]+" <br> ";
+        str +=  " "+ data["user"]["name"]+" <br> ";
+         
+        str +=  "<i class='fas fa-envelope'></i>"+" email: " + data["user"]["email"]+" <br> "; 
+        str +=  "<i class='fas fa-file'></i>"+" description: "+ data["description"]+" <br> ";
         // Variety for tag
-        str +=  "<i class='fas fa-tag'></i>"+"tags: ";
+        str +=  "<i class='fas fa-tag'></i>"+" tags: ";
         // tag with hyperlink
         for (var i =0 ; i < data["tags"].length; i++) {
         var jump_url_with_id = "search_tag.html?keyword=" + data["tags"][i];   
           str += "<a href=\"" + jump_url_with_id + " \">";
           str +="<span class='badge badge-secondary'>"+data["tags"][i]+"</span>"; 
           str += '</a>'
+          str += "  "
         }
         $("#spinner").hide(300);
         // 
         var email = data["user"]["email"]
         if(email.startsWith("service") && email.endsWith("@theia.tw"))//startsWith()比對W要大寫
         {
-          alert("email含有此字符串sevice &@theia.tw");
-          str += "<br><button type='button' class='btn btn-danger'>Delete</button>"
+          //alert("email含有此字符串sevice &@theia.tw");
+          
+          str1 =  "<i class='fas fa-calendar-alt'></i>"+" updated_at: " + data["updated_at"]+" <br> ";
+          str1 += "<br><button type='button' class='btn btn-danger'>Delete</button>"
+          $("#query_result_footer").append(str1);
         }
         // videoplayer
 
         console.log(data["user"]["is_video"]) 
-        if(data["is_video"]==true){
+        if( data["is_video"] == true ){
             $("#color_video").show();
             var video = document.getElementById('color_video');
             if(Hls.isSupported()) {
-            var hls = new Hls();            
-            hls.loadSource(data["separated_color_depth_video"]["color_video"]["hls"]);
-            // hls.loadSource(data["separated_color_depth_video"]["depth_video"]["hls"]);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED,function() {
-              });
+              var hls = new Hls();            
+              hls.loadSource(data["separated_color_depth_video"]["color_video"]["hls"]);
+              // hls.loadSource(data["separated_color_depth_video"]["depth_video"]["hls"]);
+              hls.attachMedia(video);
+              hls.on(Hls.Events.MANIFEST_PARSED,function() {
+                });
             }
             //
             $("#depth_video").show(); 
             var video = document.getElementById('depth_video');
-            if(Hls.isSupported()) {
-            var hls = new Hls();            
-            hls.loadSource(data["separated_color_depth_video"]["depth_video"]["hls"]);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED,function() {
-              });
+            if(Hls.isSupported()) 
+            {
+              var hls = new Hls();            
+              hls.loadSource(data["separated_color_depth_video"]["depth_video"]["hls"]);
+              hls.attachMedia(video);
+              hls.on(Hls.Events.MANIFEST_PARSED,function() {
+                });
             }
             // 
             $("#spinner").hide(500);          
