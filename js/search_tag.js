@@ -86,10 +86,9 @@ var query_popular = function (keyword)//search
             {
               var jump_url_with_id = "story_info.html?story_id=" + data["story_tag"][t]["stories"][i]["id"];          
               str += "<a href=\"" + jump_url_with_id + " \">";
-
               str += "<img src=\""+ data["story_tag"][t]["stories"][i]["color"]["fit_160"] +"\" width = 150>"
-              
               str += "</a>";
+              str += "&nbsp";
             }
             str += '</div>';
             str += '</div>';
@@ -110,6 +109,7 @@ var query_popular = function (keyword)//search
             str += "<a href=\"" + jump_url_with_id + " \">";
             str += "<img src=\""+ data["story_description"][i]["color"]["fit_160"] +"\" width = 150 >"
             str += "</a>";
+            str += "&nbsp";
           }
           str += '</div>';
           str += '</div>';

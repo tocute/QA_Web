@@ -67,7 +67,8 @@ var onBtnQueryHome = function (e)
 
         if ($.isEmptyObject(data)==true) 
         {
-          alert("end");
+          // alert("end");
+          $("#nomore").show();
           $("#btn_query_story").disable()
 ;          }
       },

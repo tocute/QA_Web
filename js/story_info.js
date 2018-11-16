@@ -52,9 +52,8 @@ var queryInfo = function (story_id)
 
         str = "";
         str = "<br>";
-        str +="<i class='fas fa-user'></i>";
-        str += "<img src=\" "+ data["user"]["image"] + " \"  class='rounded-circle' height=60;>";
-        str +=  "uesername: "+ data["user"]["name"]+" <br> ";
+        str += "<img src=\" "+ data["user"]["image"] + " \"  class='img-circle' height=60;>";
+        str +=  data["user"]["name"]+" <br> ";
         str +=  "<i class='fas fa-calendar-alt'></i>"+"updated_at: " + data["updated_at"]+" <br> "; 
         str +=  "<i class='fas fa-envelope'></i>"+"email: " + data["user"]["email"]+" <br> "; 
         str +=  "<i class='fas fa-file'></i>"+"description: "+ data["description"]+" <br> ";
@@ -68,7 +67,15 @@ var queryInfo = function (story_id)
           str += '</a>'
         }
         $("#spinner").hide(300);
+        // 
+        var email = data["user"]["email"]
+        if(email.startsWith("service") && email.endsWith("@theia.tw"))//startsWith()比對W要大寫
+        {
+          alert("email含有此字符串sevice &@theia.tw");
+          str += "<br><button type='button' class='btn btn-danger'>Delete</button>"
+        }
         // videoplayer
+
         console.log(data["user"]["is_video"]) 
         if(data["is_video"]==true){
             $("#color_video").show();
@@ -96,12 +103,7 @@ var queryInfo = function (story_id)
         }
         $("#query_result_info").append(str);
 
-        var email = data["user"]["email"]
-        if(email.startsWith("service") && email.endsWith("@theia.tw"))//startsWith()比對W要大寫
-        {
-          alert("email含有此字符串sevice &@theia.tw");
-          str += "<button type='button' class='btn btn-danger'>Delete</button>"
-        }
+
 
         // console.log(data);
         // if(data["user"]["email"] == 'service@theia.tw')
