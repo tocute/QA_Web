@@ -1,10 +1,10 @@
 //http://tarruda.github.io/bootstrap-datetimepicker/
 
 
-var region = ["https://staging.threal3d.com/api/v3",
-              "https://www.threal3d.com/api/v3",
-              "https://www.threal3d.net/api/v3",
-              "https://beam-API.threal3d.com/api/v3"];
+var region = ["https://staging.threal3d.com/api/v3",//beta
+              "https://www.threal3d.com/api/v3",//tw
+              "https://www.threal3d.net/api/v3",//cn
+              "https://beam-API.threal3d.com/api/v3"];//us
 var BASE_URL = region[0];
 var page = 1 ;
 // 
@@ -36,7 +36,7 @@ var onBtnQueryHome = function (e)
             str += "<tr>";
           var jump_url_with_id = "story_info.html?story_id=" + data[i]["id"];
           str += "<td>";         
-          str += "<a href=\"" + jump_url_with_id + " \">";
+          str += "<a href=\"" + jump_url_with_id + " \" class='thumbnail'>" ;
           // check storytype to show depthpic
           var email = data[i]["user"]["email"]
           if (RadioStoryType=="image") {
@@ -49,10 +49,10 @@ var onBtnQueryHome = function (e)
           }
           else {
             if(email.startsWith("service") && email.endsWith("@theia.tw"))//startsWith()比對W要大寫
-            {str += "<img src=\" " + data[i]["color"]["fit_160"] + " \"     class='redsolid' width=200>";
+            {str += "<img src=\" " + data[i]["color"]["fit_160"] + " \"     class='redsolid ' width=200>";
             }
             else{            
-            str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" width=200>";
+            str += "<img src=\" " + data[i]["color"]["fit_160"]  + "\" width=200 class='img-rounded'>";
             }
           }          
           str += "</a>";
@@ -64,6 +64,12 @@ var onBtnQueryHome = function (e)
         $("#table_query_result").append(str);
         console.log(data);
         //alert(data);
+
+        if ($.isEmptyObject(data)==true) 
+        {
+          alert("end");
+          $("#btn_query_story").disable()
+;          }
       },
       error: function(jqXHR, textStatus, errorThrown)
       { 
@@ -108,8 +114,12 @@ var chooseBaseUrl = function (index)
     }  
   }
 }
-// 
-
+// bottom load more
+    $(window).scroll(function () {
+        if ($(document).height() <= $(window).scrollTop() + $(window).height()) {
+            onBtnQueryHome();
+        }
+    });
 // 
 $(document).ready
 (
