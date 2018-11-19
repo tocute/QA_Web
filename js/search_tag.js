@@ -79,6 +79,7 @@ var query_popular = function (keyword)//search
           {
             str += '<div class="panel panel-info">';
             str += '<div class="panel-heading">';
+            str +=  "<i class='fas fa-tag'>  </i>"; 
             str += data["story_tag"][t]["tag"];
             str += '</div>';
             str += '<div class="panel-body">';
