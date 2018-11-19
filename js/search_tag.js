@@ -1,4 +1,3 @@
-
 var region = ["https://staging.threal3d.com/api/v3",
               "https://www.threal3d.com/api/v3",
               "https://www.threal3d.net/api/v3",
@@ -12,12 +11,10 @@ var onBtnQueryPopular = function (e)//出現popular內容
       type: "GET",
       url: BASE_URL + "/search/tags/popular?number_of_stories=6",
       //contentType: 'application/json; charset=UTF-8', 
-
       success: function(data, status, jqXHR) 
       {
         var str = "";
         console.log(data.length);
-
         for (var z = 0 ; z < data.length ; z++)
         {
           console.log(data[z]);
@@ -38,24 +35,18 @@ var onBtnQueryPopular = function (e)//出現popular內容
           // check storytype to show depthpic
             str += "<img src=\""+ data[z]["stories"][i]["color"]["fit_160"] +"\" width = 150 style='vertical-align:top;'>"
             str += "</a>";
-
           }
-
           str += '</div>';
           str += '</div>';
         }
-        
-
         $("#panel_query_result").append(str);
         $("#spinner").hide(300);
         //alert(data);
       },
-
       error: function(jqXHR, textStatus, errorThrown) 
       { 
           console.log(errorThrown) ;//alert('Failed!'); 
       }
-
     }
   );
 }
@@ -72,7 +63,6 @@ var query_popular = function (keyword)//search
       {
         $("#panel_query_result").text("");
         var str = "";
-
         for (var t = 0 ; t < data["story_tag"].length ; t++) 
         {
           if(data["story_tag"][t]["stories"].length > 0)
@@ -115,11 +105,9 @@ var query_popular = function (keyword)//search
           str += '</div>';
           str += '</div>';
         }
-
         $("#panel_query_result").append(str);
         $("#spinner").hide(300);
       },
-
       error: function(jqXHR, textStatus, errorThrown) 
       { 
         console.log(errorThrown) ;//alert('Failed!'); 
@@ -135,7 +123,6 @@ var btn_query_popular = function ()
   console.log(keyword);
   query_popular(keyword);
 }
-
 var chooseBaseUrl = function (index)
 {
   for (var i = 0; i < region.length; i++) {
@@ -147,7 +134,6 @@ var chooseBaseUrl = function (index)
       BASE_URL = region[index]
       window.localStorage.setItem("region_index", index)
       window.localStorage.setItem("base_url", BASE_URL)
-      
       page = 1;
       $("#panel_query_result").text("");
       query_popular();//search
@@ -167,12 +153,10 @@ $(document).ready
     var aryPara = [];
     var strUrl = location.search;
     var keyword = "";
-
     if (strUrl.indexOf("?") != -1) 
     {
       var getSearch = strUrl.split("?");
       getPara = getSearch[1].split("&");
-
       for (i = 0 ; i < getPara.length ; i++) 
       {
         ParaVal = getPara[i].split("=");
@@ -183,7 +167,6 @@ $(document).ready
       }
       query_popular(keyword);
     }
-
     $("#search_button").on("click", btn_query_popular);
   }
 );
