@@ -9,7 +9,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="css/home.js"></script>
     <script src="js/home.js"></script>
 
 </head>
@@ -34,10 +33,6 @@
         <a class="navbar-brand" href="home.html"> Home </a>   
       </li>
 
-      <!-- <li> -->
-        <!-- <a class="navbar-brand" href="story_info.html"> Story </a> -->
-      <!-- </li>  -->
-
       <li>
         <a class="navbar-brand" href="search_tag.html"> Search </a>
       </li> 
@@ -45,47 +40,39 @@
     </ul>
   </nav>
 
-  <br>
+  <div id="warning" class="alert alert-warning" style="display: none;">
+    <strong>Warning!</strong> 
+    <span id="warning_text"> Call Api Fail </span>
+  </div>
 
-      <div align="center">
-        <!--  -->image
-        <label class="switch">
-            <input type="checkbox" id="checkbox" onclick="checkbox()" >
-          <span class="slider round"></span>
-        </label>video
-        <!--  -->
-        
+  <br>
+  <div align="center">
+    image
+    <label class="switch">  
+      <input type="checkbox" id="story_type_checkbox" onclick="switchStoryType()" >
+      <span class="slider round"></span>
+    </label>
+    video        
+  </div>
+  <br>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Home</div>
+      <div class="panel-body">
+        <table class="table table-hover table-striped" >
+          <tbody  id="table_query_result">
+          </tbody>
+        </table>
       </div>
-        
-
-
-  <br>
-<div class="container">
-  <div class="panel panel-default"  >
-    <div class="panel-heading" id="">Home</div>
-    <div class="panel-body" id="">
-      <!--  -->
-      <table class="table table-hover table-striped" >
-        <tbody  id="table_query_result">
-        </tbody>
-      </table>
-        <!--  -->
+      <div class="panel-footer" id="nomore" style="display: none;" align="center">
+        no more pic/video
+      </div>
     </div>
   </div>
-</div>
 
-
-&emsp;&emsp;
-<div align="center" style="z-index:99;position: fixed;top: 50%;left: 50%;">  
-  <img src="ajax-loader.gif"  width="200" id="spinner" Align=center style="display: none;"> 
-</div>
-
-<div align="center">
-  <div id="nomore" style="display: none;">no more pic/video</div>   
-  <!-- <button id="btn_query_story" type="button" class="btn btn-success btn-lg " > View more </button> -->
-</div>
-
-
+  <div align="center" style="z-index:99;position: fixed;top: 50%;left: 50%;">  
+    <img src="ajax-loader.gif"  width="200" id="spinner" Align=center style="display: none;"> 
+  </div>
 
 </body>
 

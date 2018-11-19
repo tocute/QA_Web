@@ -1,33 +1,34 @@
 ﻿var BASE_URL = "https://staging.threal3d.com/api/v3";
 
 
-/*var deleteStory = function (story_id)
+var deleteStory = function (story_id , account_index)
 {
-  $.ajax
-  (
-    {
-      type: "DELETE",  //拿取下面網頁資料
-      url: "https://staging.threal3d.com/api/v3/stories/" + story_id ,
-      headers: {
-        'X-User-Uid':'123456789-theia',
-        'X-User-Token':'123456789-theia'
-      }, //contentType: 'application/json; charset=UTF-8', 
-      success: function(data, status, jqXHR) 
-      {
-        console.log(data); 
-        //alert(data);
-  //        <div class="alert alert-success">
-  //   <strong>Success!</strong> This alert box could indicate a successful or positive action.
-  // </div>
-      },
-      error: function(jqXHR, textStatus, errorThrown)
-      { 
-          console.log(textStatus); 
-          alert('Failed!'); 
-      }
-    }
-  );
-}*/
+  console.log(story_id);
+  console.log(account_index);
+  // if(account_index == "")
+  //   account_index = "89";
+  // var token = "1234567"+account_index+"-theia"
+    
+  // $.ajax
+  // (
+  //   {
+  //     type: "DELETE",  //拿取下面網頁資料
+  //     url: BASE_URL + "/stories/" + story_id ,
+  //     headers: {
+  //       'X-User-Uid':token,
+  //       'X-User-Token':token
+  //     }, //contentType: 'application/json; charset=UTF-8', 
+  //     success: function(data, status, jqXHR) 
+  //     {
+  //       console.log(data); 
+  //     },
+  //     error: function(jqXHR, textStatus, errorThrown)
+  //     { 
+  //       console.log(textStatus); 
+  //     }
+  //   }
+  // );
+}
 
 var queryInfo = function (story_id)
 { 
@@ -71,10 +72,13 @@ var queryInfo = function (story_id)
         var email = data["user"]["email"]
         if(email.startsWith("service") && email.endsWith("@theia.tw"))//startsWith()比對W要大寫
         {
-          //alert("email含有此字符串sevice &@theia.tw");
+          //alert("email含有此字符串sevice & @theia.tw");
+          var account_index = email.replace('service','');
+          account_index = account_index.replace('@theia.tw','');
           
           str1 =  "<i class='fas fa-calendar-alt'></i>"+" updated_at: " + data["updated_at"]+" <br> ";
-          str1 += "<br><button type='button' class='btn btn-danger'>Delete</button>"
+          str1 += "<br><button type='button' class='btn btn-danger' onclick='deleteStory(\""+story_id+"\",\""+account_index+"\")'>Delete</button>"
+
           $("#query_result_footer").append(str1);
         }
         // videoplayer
