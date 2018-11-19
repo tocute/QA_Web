@@ -146,7 +146,7 @@ $(document).ready
   function()
   { 
     BASE_URL = window.localStorage.getItem("base_url");
-    onBtnQueryPopular();
+
     var getPara, ParaVal;
     var aryPara = [];
     var strUrl = location.search;
@@ -164,6 +164,9 @@ $(document).ready
         }          
       }
       query_search(keyword);//search
+    }
+    else{
+    onBtnQueryPopular();      
     }
     $("#search_button").on("click", btn_query_search);//click search button do function:btn_query_search
   }
