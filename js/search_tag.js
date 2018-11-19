@@ -27,7 +27,6 @@ var onBtnQueryPopular = function (e)//出現popular內容
           str += '</a>'
           str += '</div>';
           str += '<div class="panel-body">';
-
           for (var i = 0; i < data[z]["stories"].length; i++) 
           { var jump_url_with_id = "story_info.html?story_id=" + data[z]["stories"][i]["id"];
             str += "&nbsp";
@@ -50,9 +49,9 @@ var onBtnQueryPopular = function (e)//出現popular內容
     }
   );
 }
-var query_popular = function (keyword)//search
+var query_search = function (keyword)//search
 {
-  console.log(keyword);
+  console.log("searchfunction:"+keyword);
   $("#spinner").show();
   $.ajax
   (
@@ -85,7 +84,6 @@ var query_popular = function (keyword)//search
             str += '</div>';
           }
         }
-
         console.log(data["story_description"]);
         if(data["story_description"].length > 0)
         {
@@ -117,11 +115,11 @@ var query_popular = function (keyword)//search
   );
 }
 
-var btn_query_popular = function ()
+var btn_query_search = function () //search
 {    
   var keyword = $("#mysearch").val();
   console.log(keyword);
-  query_popular(keyword);
+  query_search(keyword);//search
 }
 var chooseBaseUrl = function (index)
 {
@@ -136,7 +134,7 @@ var chooseBaseUrl = function (index)
       window.localStorage.setItem("base_url", BASE_URL)
       page = 1;
       $("#panel_query_result").text("");
-      query_popular();//search
+      query_search();//search
       onBtnQueryPopular();//popular
       
     }  
@@ -153,7 +151,7 @@ $(document).ready
     var aryPara = [];
     var strUrl = location.search;
     var keyword = "";
-    if (strUrl.indexOf("?") != -1) 
+    if (strUrl.indexOf("?") != -1) //用indexOf比對?=keyword...的字串
     {
       var getSearch = strUrl.split("?");
       getPara = getSearch[1].split("&");
@@ -165,8 +163,8 @@ $(document).ready
           keyword = ParaVal[1];
         }          
       }
-      query_popular(keyword);
+      query_search(keyword);//search
     }
-    $("#search_button").on("click", btn_query_popular);
+    $("#search_button").on("click", btn_query_search);//click search button do function:btn_query_search
   }
 );
